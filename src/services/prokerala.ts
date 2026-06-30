@@ -1,8 +1,9 @@
 // VedIntel AstroAPI Service (Replaced Prokerala)
 // Documentation: https://vedintelastroapi.com
 
-const API_KEY = 'vai_pk_7wzzR9CIwsDZi9NYRansfHvPdlpeg9AW';
+const getVedIntelKey = () => localStorage.getItem('vedintel_api_key') || 'vai_pk_7wzzR9CIwsDZi9NYRansfHvPdlpeg9AW';
 const BASE_URL = 'https://vedintelastroapi.com/api/v1';
+
 
 export interface ProkeralaPlanet {
   id: number;
@@ -57,7 +58,7 @@ export async function fetchPlanetPositions(
 ): Promise<ProkeralaPlanet[]> {
   const { dob, tob } = parseDateParams(datetime);
   const q = new URLSearchParams({
-    api_key: API_KEY,
+    api_key: getVedIntelKey(),
     dob,
     tob,
     lat,
@@ -96,7 +97,7 @@ export async function fetchPanchang(
 ): Promise<PanchangData | null> {
   const { date } = parseDateParams(datetime);
   const q = new URLSearchParams({
-    api_key: API_KEY,
+    api_key: getVedIntelKey(),
     date,
     lat,
     lon,
@@ -131,7 +132,7 @@ export async function fetchChoghadiya(
 ): Promise<ChoghadiyaSlot[]> {
   const { date } = parseDateParams(datetime);
   const q = new URLSearchParams({
-    api_key: API_KEY,
+    api_key: getVedIntelKey(),
     date,
     lat,
     lon,
@@ -166,7 +167,7 @@ export async function fetchAiInterpret(
 ): Promise<string | null> {
   const { dob, tob } = parseDateParams(datetime);
   const q = new URLSearchParams({
-    api_key: API_KEY,
+    api_key: getVedIntelKey(),
     dob,
     tob,
     lat,

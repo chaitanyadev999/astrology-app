@@ -113,7 +113,8 @@ const BUSINESS_CATEGORIES = {
   tech: { name: "సాఫ్ట్‌వేర్ & ఐటి (IT, AI, Hardware)", rulingPlanet: 5, idealCustomers: "టెక్ ప్రియులు, యువత, నిపుణులు", suitability: "సాఫ్ట్‌వేర్ సంస్థలు, మొబైల్స్, ఐటి కన్సల్టింగ్", attractionVibe: "వేగం, ఇన్నోవేషన్, మరియు స్మార్ట్ సొల్యూషన్స్ వెతికే వారిని ఆకర్షిస్తుంది." },
   gaming: { name: "గేమింగ్ & ఈ-స్పోర్ట్స్ (Gaming, Esports)", rulingPlanet: 9, idealCustomers: "యువత, ప్రో-గేమర్స్, వినూత్న టెక్ ప్రియులు", suitability: "గేమ్ డెవలప్‌మెంట్, ఈ-స్పోర్ట్స్ అకాడమీలు, వర్చువల్ గేమింగ్ జోన్స్, గేమింగ్ ల్యాబ్స్", attractionVibe: "పోటీతత్వం, అపరిమిత ఉత్సాహం, లీడర్‌షిప్ మరియు అడ్రినలిన్ రష్ ని ఇష్టపడే కస్టమర్లను అయస్కాంతంలా ఆకర్షిస్తుంది." },
   socialmedia: { name: "సోషల్ మీడియా ఏజెన్సీ (Social Media, PR)", rulingPlanet: 4, idealCustomers: "ఆధునిక నెటిజన్లు, బ్రాండ్స్, క్రియేటివ్ యూత్", suitability: "డిజిటల్ మార్కెటింగ్ ఏజెన్సీలు, పిఆర్ కన్సల్టెన్సీలు, ఇన్‌ఫ్లుయెన్సర్ మేనేజ్‌మెంట్ నెట్‌వర్క్స్", attractionVibe: "వైరల్ ట్రెండ్స్, కమ్యూనిటీ బిల్డింగ్, నిరంతర ఆన్‌లైన్ కనెక్టివిటీ మరియు గ్లోబల్ ప్రమోషన్స్ ని కోరుకునే వారిని ఆకర్షిస్తుంది." },
-  blogging: { name: "కంటెంట్ క్రియేషన్ (Blogging, YouTube)", rulingPlanet: 5, idealCustomers: "సమాచార శోధకులు, వీక్షకులు, డిజిటల్ చదువరులు, శ్రోతలు", suitability: "యూట్యూబ్ ఛానెల్స్, ప్రొడక్షన్ హౌసెస్, బ్లాగ్s, కంటెంట్ రైటింగ్ సర్వీసెస్, ఆడియో పాడ్‌కాస్ట్స్", attractionVibe: "సృజనాత్మకత, ఉపయోగకరమైన సమాచారం, కమ్యూనికేషన్ మరియు నిత్య నూతన వినోద అంశాలను తెలుసుకోవాలనుకునే వారిని ఆకర్షిస్తుంది." },
+  youtube_insta: { name: "యూట్యూబ్ / ఇన్‌స్టాగ్రామ్ (YouTube, Instagram Creator)", rulingPlanet: 4, idealCustomers: "డిజిటల్ ఫాలోవర్స్, యువత, సబ్‌స్క్రైబర్స్", suitability: "యూట్యూబ్ ఛానెల్స్, ఇన్‌స్టాగ్రామ్ పేజీలు, వ్లాగ్స్, ఇన్ఫ్లుయెన్సర్ అకౌంట్స్", attractionVibe: "వైరల్ కంటెంట్, వినోదం మరియు కమ్యూనిటీ బంధాన్ని ఇష్టపడే వారిని అమితంగా ఆకర్షిస్తుంది." },
+  blogging: { name: "కంటెంట్ క్రియేషన్ (Blogging, Writing)", rulingPlanet: 5, idealCustomers: "సమాచార శోధకులు, వీక్షకులు, డిజిటల్ చదువరులు, శ్రోతలు", suitability: "ప్రొడక్షన్ హౌసెస్, బ్లాగ్s, కంటెంట్ రైటింగ్ సర్వీసెస్, ఆడియో పాడ్‌కాస్ట్స్", attractionVibe: "సృజనాత్మకత, ఉపయోగకరమైన సమాచారం, కమ్యూనికేషన్ మరియు నిత్య నూతన వినోద అంశాలను తెలుసుకోవాలనుకునే వారిని ఆకర్షిస్తుంది." },
   essential: { name: "సూపర్ మార్కెట్ (Grocery, FMCG)", rulingPlanet: 2, idealCustomers: "కుటుంబాలు, గృహిణులు, సాధారణ ప్రజానీకం", suitability: "డిపార్ట్‌మెంటల్ స్టోర్స్, ఆర్గానిక్ ఫుడ్స్, డైరీ షాప్స్", attractionVibe: "నిత్యజీవిత అవసరాలు, ఆరోగ్యం మరియు స్నేహపూర్వక బడ్జెట్ చూసే వారిని ఆకర్షిస్తుంది." },
   construction: { name: "రియల్ ఎస్టేట్ (Real Estate, Builders)", rulingPlanet: 8, idealCustomers: "ఇల్లు కట్టుకునేవారు, కాంట్రాక్టర్లు, స్థిరాస్తి ఇన్వెస్టర్లు", suitability: "నిర్మాణ రంగాలు, హార్డ్‌వేర్, ఫ్లాట్స్ సేల్స్", attractionVibe: "జీవితకాల భద్రత, బలం, మరియు నాణ్యతను కోరుకునే కస్టమర్లను ఆకర్షిస్తుంది." },
   finance: { name: "ఫైనాన్స్ (FinTech, Banking, Wealth)", rulingPlanet: 3, idealCustomers: "వ్యాపారవేత్తలు, పొదుపుపరులు, ఇన్వెస్టర్లు", suitability: "చిట్ ఫండ్స్, బ్యాంకింగ్ అప్లికేషన్లు, స్టాక్ బ్రోకింగ్", attractionVibe: "నమ్మకం, ద్రవ్య వృద్ధి, మరియు ఆర్థిక సుస్థిరత కోరుకునే వారిని ఆకర్షిస్తుంది." },
@@ -983,11 +984,35 @@ export default function App() {
       lagnaTimeline, birthYogas, yogasSummary, currentDashaName, currentDashaPlanet, dashaStartYear, dashaEndYear,
       presentYogas, dashaRelationToBiz, activeOperatingYoga, growthTimeline, friendlyRashiList,
       mitraRashiSuggestions: mitraRashiSuggestions.slice(0, 4), transitImmunityScore, shieldType, shieldDesc,
-      hasTransitShield, luckyColorName, recommendedLogoPalette, recommendedFields, remedyList, multiWordAnalysis, processedPartners
+      hasTransitShield, luckyColorName, recommendedLogoPalette, recommendedFields, remedyList, multiWordAnalysis, processedPartners,
+      aiLoading: !!localStorage.getItem('gemini_api_key')
     });
 
     setLoading(false);
     setActiveTab('mha_synthesis');
+
+    const geminiKey = localStorage.getItem('gemini_api_key') || '';
+    if (geminiKey) {
+      const prompt = `మీరు ఒక నిపుణ జ్యోతిష్య-సంఖ్యాశాస్త్ర విశ్లేషకుడు. వ్యాపార/యూట్యూబ్/ఇన్‌స్టాగ్రామ్ పేరు విశ్లేషణ: 
+యజమాని పేరు: ${ownerName}, వ్యాపార/ఛానెల్ పేరు: ${businessName} (స్కోర్: ${finalRatingOutOf10}/10).
+చాల్డియన్ సంఖ్య: ${chaldeanSingle}, గ్రహం: ${businessPlanet.name}.
+దయచేసి ఈ పేరు వ్యాపారానికి లేదా యూట్యూబ్/సోషల్ మీడియా కి ఎంతవరకు అనుకూలమో వివరించి, మంచి ఫలితాల కోసం ఏదైనా మార్పు అవసరమా అనేది స్పష్టంగా తెలుగులో క్లుప్తంగా చెప్పండి.`;
+      
+      fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "విశ్లేషణ అందుబాటులో లేదు.";
+        setReport(prev => prev ? { ...prev, aiReading: text, aiLoading: false } : prev);
+      })
+      .catch(err => {
+        console.error('Gemini API Error:', err);
+        setReport(prev => prev ? { ...prev, aiReading: "AI విశ్లేషణ విఫలమైంది.", aiLoading: false } : prev);
+      });
+    }
   };
 
   const handleSkipCountdown = () => {
@@ -1216,6 +1241,15 @@ export default function App() {
                 </div>
               </div>
 
+              <div className="bg-[#080b20] p-4 rounded-xl border border-indigo-900/50 mt-4">
+                <label className="text-xs text-indigo-300 font-bold mb-1 block">🤖 Gemini API Key (AI విశ్లేషణ కోసం - YouTube/Insta Names)</label>
+                <input type="password" 
+                  defaultValue={localStorage.getItem('gemini_api_key')||''}
+                  onChange={e=>{localStorage.setItem('gemini_api_key', e.target.value);}}
+                  className="w-full bg-[#02030a] border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-200 focus:border-indigo-500" 
+                  placeholder="Paste your Gemini API key here..." />
+              </div>
+
               <button type="submit" className="w-full bg-gradient-to-r from-amber-400 to-yellow-600 text-slate-950 rounded-2xl py-4 font-black text-sm hover:from-amber-300 hover:to-yellow-500 transition-all shadow-lg shadow-amber-500/10 mt-2">
                 సంపూర్ణ మహా సమన్వయ విశ్లేషణ ప్రారంభించు (60 Secs)
               </button>
@@ -1274,6 +1308,25 @@ export default function App() {
                         )}
                       </div>
                     </div>
+
+                    {/* AI Reading Section */}
+                    {(report.aiLoading || report.aiReading) && (
+                      <div className="md:col-span-12 bg-gradient-to-r from-indigo-950/40 to-[#030514] p-5 sm:p-6 rounded-2xl border border-indigo-500/30 space-y-4 shadow-[0_0_20px_rgba(99,102,241,0.05)] mt-4">
+                        <h4 className="font-extrabold text-indigo-400 text-xs sm:text-sm flex items-center gap-2 font-sans uppercase tracking-wide">
+                          🤖 Gemini AI విశ్లేషణ (YouTube / Business Name):
+                        </h4>
+                        {report.aiLoading ? (
+                          <div className="text-indigo-300 text-sm animate-pulse flex items-center gap-2">
+                            <Activity className="w-4 h-4 animate-spin" /> 
+                            విశ్లేషిస్తోంది... (5-10 Secs)
+                          </div>
+                        ) : (
+                          <div className="text-slate-300 text-sm whitespace-pre-wrap leading-relaxed font-sans bg-[#020411] p-4 rounded-xl border border-indigo-500/20">
+                            {report.aiReading}
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                     {((report.finalRatingOutOf10 < 10 && report.spellingSuggestions && report.spellingSuggestions.length > 0) || (report.isTargetForced && report.spellingSuggestions && report.spellingSuggestions.length > 0)) && (
                       <div className="md:col-span-8 bg-gradient-to-r from-indigo-950 to-[#030514] p-5 sm:p-6 rounded-2xl border border-indigo-500/50 space-y-4 shadow-[0_0_30px_rgba(99,102,241,0.15)] relative overflow-hidden">

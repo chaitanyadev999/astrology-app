@@ -13,11 +13,11 @@ import LotteryChecklist from './components/LotteryChecklist';
 import PanchangaCalendar from './components/PanchangaCalendar';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('analyzer');
+  const [activeTab, setActiveTab] = useState('maha');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const navItems = [
-    { id: 'analyzer', label: 'Business & Numerology', icon: <Star className="w-5 h-5" /> },
+    { id: 'analyzer', label: 'Vyapaara Jaathakam Global Pro', icon: <Star className="w-5 h-5" /> },
     { id: 'personal', label: 'Personal Prediction', icon: <User className="w-5 h-5" /> },
     { id: 'kundali', label: 'Janam Kundali (Telugu)', icon: <User className="w-5 h-5" /> },
     { id: 'lottery', label: 'Lottery & Laba Kaksha', icon: <Compass className="w-5 h-5 text-emerald-400" /> },

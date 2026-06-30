@@ -38,7 +38,7 @@ export function toJD(date: Date): number {
   const y = date.getUTCFullYear(), m = date.getUTCMonth() + 1;
   const d = date.getUTCDate() + date.getUTCHours()/24 + date.getUTCMinutes()/1440 + date.getUTCSeconds()/86400;
   const a = Math.floor((14-m)/12), Y = y+4800-a, M = m+12*a-3;
-  return d + Math.floor((153*M+2)/5) + 365*Y + Math.floor(Y/4) - Math.floor(Y/100) + Math.floor(Y/400) - 32045;
+  return d + Math.floor((153*M+2)/5) + 365*Y + Math.floor(Y/4) - Math.floor(Y/100) + Math.floor(Y/400) - 32045.5;
 }
 
 export function lahiriAyanamsa(jd: number): number {
@@ -89,12 +89,10 @@ function gst(jd: number): number {
 export function calcLagna(jd: number, lat: number, lng: number): number {
   const ramc = mod360(gst(jd) + lng);
   const eps = obliquity(jd);
-  const x = -Math.cos(ramc*DEG);
-  const y = Math.sin(ramc*DEG)*Math.cos(eps*DEG) + Math.tan(lat*DEG)*Math.sin(eps*DEG);
-  let asc = Math.atan2(x, y)*RAD;
-  asc = mod360(asc);
-  if (Math.abs(mod360(asc - ramc + 180) - 180) > 90) asc = mod360(asc + 180);
-  return mod360(asc - lahiriAyanamsa(jd));
+  const y_m = Math.cos(ramc*DEG);
+  const x_m = -Math.sin(ramc*DEG)*Math.cos(eps*DEG) - Math.tan(lat*DEG)*Math.sin(eps*DEG);
+  let asc = Math.atan2(y_m, x_m) * RAD;
+  return mod360(mod360(asc) - lahiriAyanamsa(jd));
 }
 
 export function sunriseSunset(year: number, month: number, day: number, lat: number, lng: number, tz: number): {sr: number; ss: number} {
@@ -187,8 +185,26 @@ export function getLivePanchanga(date: Date, lat: number, lng: number, tz: numbe
   else if (karanaRaw >= 57) karanaIdx = 57 - karanaRaw + 7;
   else karanaIdx = ((karanaRaw-1) % 7);
 
+  // Calculate Sunrise for today
+  const { sr, ss } = sunriseSunset(date.getFullYear(), date.getMonth()+1, date.getDate(), lat, lng, tz);
+  let srMs = (() => { const b = new Date(date); b.setHours(0,0,0,0); return b.getTime() + sr*3600000; })();
+  const ssMs = (() => { const b = new Date(date); b.setHours(0,0,0,0); return b.getTime() + ss*3600000; })();
+  const nowMs = date.getTime();
+
+  // In Vedic astrology, the day (Vara) changes at Sunrise, not at midnight.
+  let localDay = date.getDay();
+  let currentSrMs = srMs;
+  if (nowMs < srMs) {
+    localDay = (localDay + 6) % 7; // It's still previous day's Vaaram before sunrise
+    // Fix: Use the PREVIOUS day's sunrise for calculations!
+    const prevDate = new Date(date);
+    prevDate.setDate(prevDate.getDate() - 1);
+    const prevSr = getSunrise(lat, lng, prevDate);
+    srMs = prevSr.getTime();
+  }
+
   // Vara
-  const varaIdx = date.getDay();
+  const varaIdx = localDay;
   const vScore  = VARA_SCORE[varaIdx] || 3;
 
   // Lagna
@@ -196,19 +212,21 @@ export function getLivePanchanga(date: Date, lat: number, lng: number, tz: numbe
   const lagnaIdx = Math.floor(lagna/30) % 12;
   const lScore   = LAGNA_SCORE_MAP[lagnaIdx] || 5;
 
-  // Hora (uses local time hours from date object)
-  const localHour  = date.getHours();
-  const localMin   = date.getMinutes();
-  const localDay   = date.getDay();
-  const { sr, ss } = sunriseSunset(date.getFullYear(), date.getMonth()+1, date.getDate(), lat, lng, tz);
-  const srMs = (() => { const b = new Date(date); b.setHours(0,0,0,0); return b.getTime() + sr*3600000; })();
-  const ssMs = (() => { const b = new Date(date); b.setHours(0,0,0,0); return b.getTime() + ss*3600000; })();
+  // Hora
   const dayDurMs = ssMs - srMs;
   const horaDurMs = dayDurMs / 12;
   const startIdx = HORA_START[localDay];
-  const nowMs = date.getTime();
+  
   let horaIdxInDay = Math.floor((nowMs - srMs) / horaDurMs);
-  if (horaIdxInDay < 0 || horaIdxInDay >= 12) horaIdxInDay = 0;
+  if (horaIdxInDay < 0) {
+    // If before sunrise, it's night time of previous day
+    // Night is divided into 12 horas from sunset to next sunrise
+    // A simplified approach is just fallback to 0 or calculate properly.
+    // For now we bound it.
+    horaIdxInDay = 0; 
+  }
+  if (horaIdxInDay >= 12) horaIdxInDay = 11;
+  
   const horaEN = HORA_EN[(startIdx + horaIdxInDay) % 7];
   const horaTE = HORA_TE[(startIdx + horaIdxInDay) % 7];
   const hScore = HORA_SCORE_MAP[horaEN] || 5;
@@ -238,7 +256,7 @@ export function getLivePanchanga(date: Date, lat: number, lng: number, tz: numbe
   return {
     jd,
     tithi: tithiIdx+1, tithiName: TITHI_TE[tithiIdx], paksha: tithiIdx < 15 ? 'శుక్ల' : 'కృష్ణ', tithiScore: tScore,
-    nak: nakIdx+1, nakName: NAK_TE[nakIdx], nakLord: NAK_LORD_TE[nakIdx], nakLordEN: HORA_EN[0], pada, nakScore: nScore,
+    nak: nakIdx+1, nakName: NAK_TE[nakIdx], nakLord: NAK_LORD_TE[nakIdx], nakLordEN: HORA_EN[['కేతు','శుక్ర','సూర్య','చంద్ర','కుజ','రాహు','గురు','శని','బుధ'].indexOf(NAK_LORD_TE[nakIdx]) >= 0 ? [7,5,0,3,6,3,2,4,2][['కేతు','శుక్ర','సూర్య','చంద్ర','కుజ','రాహు','గురు','శని','బుధ'].indexOf(NAK_LORD_TE[nakIdx])] : 0], pada, nakScore: nScore,
     yoga: yogaIdx+1, yogaName: YOGA_TE[yogaIdx], yogaGood: YOGA_GOOD.has(yogaIdx), yogaBad: YOGA_BAD.has(yogaIdx),
     karana: karanaIdx+1, karanaName: KARANA_NAMES_TE[Math.min(karanaIdx, KARANA_NAMES_TE.length-1)],
     vara: varaIdx, varaName: VARA_TE[varaIdx], varaScore: vScore,
@@ -252,11 +270,12 @@ export function getLivePanchanga(date: Date, lat: number, lng: number, tz: numbe
   };
 }
 
-/** Get panchanga for a specific date+time string "YYYY-MM-DD" + "HH:MM" */
+/** Get panchanga for a specific date+time string "YYYY-MM-DD" + "HH:MM" (local IST time) */
 export function getPanchangaForDateTime(dateStr: string, timeStr: string, lat: number, lng: number, tz = 5.5): LivePanchanga {
   const [y,m,d] = dateStr.split('-').map(Number);
   const [h,mi]  = timeStr.split(':').map(Number);
-  // Create as local time then convert to UTC via tz offset
-  const utcMs = Date.UTC(y, m-1, d, h, mi) - tz*3600000;
-  return getLivePanchanga(new Date(utcMs), lat, lng, tz);
+  // local IST time => UTC: subtract tz offset
+  const utcMs = Date.UTC(y, m-1, d, h, mi, 0) - Math.round(tz * 3600000);
+  const dt = new Date(utcMs);
+  return getLivePanchanga(dt, lat, lng, tz);
 }

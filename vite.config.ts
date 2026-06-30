@@ -5,4 +5,7 @@ export default defineConfig({
   base: '/astrology-app/',
   plugins: [react()],
   server: {
-    port: 5
+    port: 5173,
+    host: true
+  }
+})
