@@ -534,6 +534,8 @@ Draw Date: ${h.drawDate}
 
     const lLagnaScore = LAGNAM_SCORE[lotteryLagna] || 5;
     // Use livePanchanga hora/kaksha for precise astronomical hora
+    const hora = livePanchanga.horaTE;
+    const kaksha = livePanchanga.kaksha;
     const lHoraInfo = HORA_INFO[hora]||{score:5,te:'',lotteryMsg:''};
     const lKakshaInfo = KAKSHA_INFO[kaksha]||{score:5,te:'',lotteryOk:true};
     const lotteryTimeScore = Math.round((lLagnaScore + lHoraInfo.score + lKakshaInfo.score)/3);
