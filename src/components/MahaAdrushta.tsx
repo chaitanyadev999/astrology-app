@@ -484,7 +484,8 @@ Draw Date: ${h.drawDate}
     let hora = '', kaksha = '', todayNakName = '', todayNakL = '', cV = 0, lV = 0;
     let lotteryLagna = 0, lLagnaScore = 0, lotteryHora = '', lotteryKaksha = '', lHoraInfo = null, lKakshaInfo = null, lotteryTimeScore = 0;
     let drawNakName = '', drawNakL = '', drawHora = '', drawKaksha = '', drawTithi = '', drawVaara = '', drawDayScore = 0, drawNakV = 0;
-    let transPosFallback = {};
+    let transPosFallback: any = {};
+    let lastDrawMatch: any[] = [];
 
     const userResults = userList.map((userObj, userIdx) => {
       const userBirthPlanets = birthPlanetsArray[userIdx] || [];
