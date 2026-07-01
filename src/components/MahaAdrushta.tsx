@@ -839,7 +839,7 @@ Draw Date: ${h.drawDate}
     const masterScoreNum = (((HORA_INFO[hora]?.score||5)+(cb.good?9:5)+(Math.max(0,tara.score)*3)+6)/4) + (yogaBonus * 0.1);
     const masterScore = (Math.min(10, Math.max(0, masterScoreNum))).toFixed(1);
 
-    let lastDrawMatch: any[] = [];
+    lastDrawMatch = [];
     if (lastNs.length > 0 && livePanchangaPrevDraw) {
       lastDrawMatch = lastNs.map(n => {
         const v = reduce9(n);
