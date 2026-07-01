@@ -542,6 +542,14 @@ Draw Date: ${h.drawDate}
     const lotteryHora = hora;
     const lotteryKaksha = kaksha;
 
+    // Restore missing variables
+    const todayNakName = NAKSHATRAMS[actualTodayNak - 1] || 'Unknown';
+    const todayNakL = NAK_LORDS[actualTodayNak - 1] || 'Unknown';
+    const todayNakV = PLANET_NUM[todayNakL] || 1;
+    const cb = getChandraBalam(userRashi, f.orderDate);
+    const tara = getTara(userNakIdx, actualTodayNak - 1);
+    const kashaP = kaksha === "అమృత" ? "చంద్ర" : kaksha === "లాభ" ? "బుధ" : kaksha === "శుభ" ? "గురు" : kaksha === "చల" ? "శుక్ర" : kaksha === "ఉద్వేగ" ? "సూర్య" : kaksha === "రోగ" ? "కుజ" : "శని";
+
     // ─── DRAW DAY Analysis ───
     const drawNakName = actualDrawNak ? NAKSHATRAMS[actualDrawNak - 1] : (drawPanchang?.nakshatra?.[0]?.name || '');
     const drawNakIdxRaw = NAKSHATRAMS.findIndex(n => drawNakName.includes(n) || n.includes(drawNakName));
