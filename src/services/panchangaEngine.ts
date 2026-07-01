@@ -199,8 +199,9 @@ export function getLivePanchanga(date: Date, lat: number, lng: number, tz: numbe
     // Fix: Use the PREVIOUS day's sunrise for calculations!
     const prevDate = new Date(date);
     prevDate.setDate(prevDate.getDate() - 1);
-    const prevSr = getSunrise(lat, lng, prevDate);
-    srMs = prevSr.getTime();
+    const { sr: prevSrHr } = sunriseSunset(prevDate.getFullYear(), prevDate.getMonth()+1, prevDate.getDate(), lat, lng, tz);
+    const b = new Date(prevDate); b.setHours(0,0,0,0);
+    srMs = b.getTime() + prevSrHr * 3600000;
   }
 
   // Vara
