@@ -471,7 +471,8 @@ Draw Date: ${h.drawDate}
     const userList = profiles.length > 0 ? profiles : [f];
     
     // Global predictions (shared across all users)
-    const drawNakNameGlobal = actualDrawNak ? NAKSHATRAMS[actualDrawNak - 1] : (drawPanchang?.nakshatra?.[0]?.name || '');
+    const globalActualDrawNak = (!f.hasJatakam && f.manualDrawNak) ? parseInt(f.manualDrawNak) : livePanchangaDraw.nak;
+    const drawNakNameGlobal = globalActualDrawNak ? NAKSHATRAMS[globalActualDrawNak - 1] : (drawPanchang?.nakshatra?.[0]?.name || '');
     const drawHoraGlobal = livePanchangaDraw.horaTE;
     const drawKakshaGlobal = livePanchangaDraw.kaksha;
     
