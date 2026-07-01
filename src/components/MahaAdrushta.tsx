@@ -477,6 +477,15 @@ Draw Date: ${h.drawDate}
     const drawKakshaGlobal = livePanchangaDraw.kaksha;
     
     // Compute results for each user
+    
+    let table24h = [];
+    let bestTimes = [];
+    let bestTimeToday = null;
+    let hora = '', kaksha = '', todayNakName = '', todayNakL = '', cV = 0, lV = 0;
+    let lotteryLagna = 0, lLagnaScore = 0, lotteryHora = '', lotteryKaksha = '', lHoraInfo = null, lKakshaInfo = null, lotteryTimeScore = 0;
+    let drawNakName = '', drawNakL = '', drawHora = '', drawKaksha = '', drawTithi = '', drawVaara = '', drawDayScore = 0, drawNakV = 0;
+    let transPosFallback = {};
+
     const userResults = userList.map((userObj, userIdx) => {
       const userBirthPlanets = birthPlanetsArray[userIdx] || [];
       let userLagna = userObj.lagnam;
@@ -512,7 +521,7 @@ Draw Date: ${h.drawDate}
 
     const compFullV = nameNum(f.lotteryCompanyFull || f.companyName);
     const buyLocV = nameNum(f.lotteryBuyLocation || f.companyLocation || 'India');
-    const cV = compFullV; const lV = buyLocV;
+    cV = compFullV; lV = buyLocV;
 
     const lotteryHour = parseInt(f.lotteryTime.split(':')[0]);
     let sunRashi = 0;
@@ -849,7 +858,7 @@ Draw Date: ${h.drawDate}
       'బుధ':(userLagna+11)%12,'గురు':(userLagna+8)%12,'శుక్ర':(userLagna+1)%12,
       'శని':(userLagna+6)%12,'రాహు':(userLagna+4)%12,'కేతు':(userLagna+10)%12
     };
-    const transPosFallback: Record<string,number> = {
+    transPosFallback = {
       'లగ్న':lotteryLagna,'చంద్ర':(userRashi+2)%12,'గురు':(userLagna+5)%12,
       'శని':(userLagna+9)%12,'రాహు':(userLagna+4)%12,'కేతు':(userLagna+10)%12
     };
